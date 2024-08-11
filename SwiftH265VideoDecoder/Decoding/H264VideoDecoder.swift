@@ -63,7 +63,7 @@ class H264VideoDecoder: VideoDecoder {
     }
   }
   
-  /// Process a NAL unit a supplied presentation timestamp
+  /// Process a NAL unit at a supplied presentation timestamp
   private func process(_ nalu: H264NALUnit, pts: CMTime) {
     switch nalu.type {
     case .accessUnitDelimiter:
@@ -94,7 +94,7 @@ class H264VideoDecoder: VideoDecoder {
       
     case .sliceIDR,
          .sliceNonIDR:
-      // This payload of the NALU may actually be composed of multiple NALU's that make up the entire picture.
+      // The payload of this NALU may actually be composed of multiple NALU's that make up the entire picture.
       sequence += nalu.splitOnAnnexB()
       sequencePTS = pts
       

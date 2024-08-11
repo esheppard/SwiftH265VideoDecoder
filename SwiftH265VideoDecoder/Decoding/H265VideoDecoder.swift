@@ -69,7 +69,7 @@ class H265VideoDecoder: VideoDecoder {
     }
   }
   
-  /// Process a NAL unit a supplied presentation timestamp
+  /// Process a NAL unit at a supplied presentation timestamp
   private func process(_ nalu: H265NALUnit, pts: CMTime) {
     
     // If the current sequence contains slices we need to output them
