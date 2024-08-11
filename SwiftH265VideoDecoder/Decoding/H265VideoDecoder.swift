@@ -1,6 +1,3 @@
-//
-// Copyright 2024 Elijah Sheppard
-//
 
 import Foundation
 import AVFoundation
@@ -166,8 +163,9 @@ class H265VideoDecoder: VideoDecoder {
     }
     
     // Reserve enough data for each NALU + 4 bytes AVCC length header for each
-    let requiredDataSize = sequence.reduce(0) { count, nalu in count + nalu.data.count }
-      + sequence.count * 4
+    let requiredDataSize = sequence.reduce(0) { count, nalu in
+      count + nalu.data.count + 4
+    }
     
     var bufferData = Data(capacity: requiredDataSize)
     for nalu in sequence {

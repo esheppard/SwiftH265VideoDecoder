@@ -1,6 +1,3 @@
-//
-// Copyright 2024 PrizedPixel
-//
 
 import Foundation
 import CoreVideo
@@ -14,7 +11,7 @@ protocol DecompressionSessionDelegate: AnyObject {
 /// compressed H.264 or H.265 NAL units).
 ///
 /// Decompressed ``CMSampleBuffer`` objects are returned asynchronously via the delegate.
-/// 
+///
 /// These decompressed sample buffers are created from ``CVImageBuffer`` which can then
 /// be used for display as well as other image operations (like motion detection or filters).
 class DecompressionSession {
