@@ -79,13 +79,16 @@ class DecompressionSession {
     callbackRecord.decompressionOutputCallback = callback
     callbackRecord.decompressionOutputRefCon = Unmanaged.passUnretained(self).toOpaque()
     
-    let decoderSpec: [String: AnyObject]? = [
-      kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder as String: true as AnyObject
-    ]
+    let decoderSpec = NSMutableDictionary()
+    
+    #if os(macOS)
+    // Note: Hardware decoding is enable by defualt on iOS
+    decoderSpec[kVTVideoDecoderSpecification_EnableHardwareAcceleratedVideoDecoder] = true
+    #endif
 
     let status = VTDecompressionSessionCreate(allocator: kCFAllocatorDefault,
                                               formatDescription: description,
-                                              decoderSpecification: decoderSpec as CFDictionary?,
+                                              decoderSpecification: decoderSpec,
                                               imageBufferAttributes: nil,
                                               outputCallback: &callbackRecord,
                                               decompressionSessionOut: &session)

@@ -126,7 +126,7 @@ public struct VideoView: UIViewRepresentable {
   private let bufferReceiver: VideoViewBufferReceiver
   private let backgroundColor: Color
 
-  public init(bufferReceiver: VideoViewBufferReceiver, backgroundColor: Color) {
+  public init(bufferReceiver: VideoViewBufferReceiver, backgroundColor: Color = .black) {
     self.bufferReceiver = bufferReceiver
     self.backgroundColor = backgroundColor
   }
